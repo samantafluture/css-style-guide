@@ -1,0 +1,135 @@
+FIGMA
+=====
+
+1. Coletar todos os assets
+- salvar ícones (svg)
+- salvar imagens (png)
+
+2. Salvar fontes
+- abrir pág de style do guide
+- pegar nome e pesod as fontes
+- ir no Google fonts, escolher as fontes
+- gerar embed e salvar no html
+
+3. Salvar cores
+- criar um doc txt com todas as cores em #
+- criar variáveis para estas cores
+
+COMPONENTES
+===========
+
+- quando temos um elemento que se repete muito
+- ganhamos tempo se transformamos ele em um componente 
+- ex: botão, card de informação
+- cria 1 vez só vez 
+
+CRIANDO UM COMPONENTE
+=====================
+
+1. o que faz deste componente um componente?
+- retirar infos do guia de estilo no próprio FIGMA
+    . cores
+    . tipografia
+    . formato
+    . sombra
+    . efeitos
+
+2. criar pastas
+- assets
+    > imgs
+        > icones
+    > css
+        > componentes
+            . botao.css
+
+3. criar arquivo css com nome do componente 
+- ex: botao.css
+- colocar toda a estilização dele
+
+4. salvar variáveis de base no css
+- criar pasta base dentro da pasta css
+- criar arquivo variaveis.css
+- abrir o componente :root
+- dentro, colocar as cores:
+    ex: --amarelo: #ffcb47;
+- trocar as cores usando:
+    . var(--amarelo)
+
+5. criar arquivo base.css
+- dentro da pasta base de css
+- vai ficar tudo o que precisa de estilização que todas as páginas usam para funcionar
+- base vai servir de "ponto de importação"
+- para que não há tantos arquivos de css sendo importados no html
+- usar função @import
+    . importar o arquivo variaveis.css
+- colocar o arquivo base.css no html
+- boas práticas:
+    . arquivo variaveis.css deve ser renomeado para _variaveis.css
+    . o arquivos css que terao import ganham com _ na frente
+    . tudo o que é importado indiretamente via css deve ter _ antes
+
+6. importar o reset.css
+- colocar ele como _reset.css 
+- usar o import dele no base.css
+- ele deve estar dentro da pasta base
+
+7. inheret
+- no css, um elemento pode herdar do corpo (pai) uma propriedade
+- por exemplo, eu posso colocar no body da base uma fonte usando variáveis
+- depois posso colocar que no elemento cabelho, por exemplo:
+    . font-family: inheret;
+
+8. componente com classe principal + alterantiva
+- quando temos elementos que são muito parecidos
+    . ex: botões
+    . mesma base, porém com algumas diferenças
+- boas práticas:
+    . criar a classe padrão
+    . criar a classe alterantiva
+        -> incluir aqui as diferenças (ex: cor diferente, etc)
+- o elemento que tem coisas diferentes porém a mesma base
+    . deve ter 2 classes
+    . a classe padrão (ex: botao)
+    . e a classe alterantiva (ex: botao--alternativo), uma variação
+
+8. box-sizing = border-box
+- sempre que colocar as propriedades abaixo em um elemento
+    . width
+    . padding
+- colocar em seguida um box-sizing: border-box
+- para garantir que o tamanho seja o esperado, já contando com o padding
+
+9. aria-label
+- acessibilidade
+- exemplo de uso:
+    . em inputs
+    . para manter o placeholder mesmo com algo digitado em cima
+    . para o leitor de tela
+    . colocar o mesmo texto do placeholder
+
+10. dividir layout em componentes
+- se perguntar:
+    . onde mais esta estrutura é usada?
+    . se for apenas uma vez, então não seria um componente
+- mas e se estruturas dentro da estrutura do elemento se repetir ao longo do layout?
+    . então estas estruturas que se repetem são na verdade componentes
+
+11. tipografia
+- tipogradfia é uma das coisas mais constantes de um projeto
+- já que ela não muda, podemos deixá-la dentro do base.css
+
+12. infos de contato no rodapé
+- devem ficar dentro da tag html <address>
+
+13. usar o componentes.html como documentação
+- estruturas de como montar os componentes
+
+14. seções vs componentes
+- componentes
+    . ficam dentro da pasta componentes
+    . se repetem ao longo do layout
+    . são reutilizáveis
+- seções
+    . são partes do template da página
+    . ficam na pasta raiz css
+    . servem para estilizar algo específico da seção, que não se encaixa no componente
